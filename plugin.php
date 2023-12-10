@@ -17,7 +17,7 @@ if ( ! defined( 'BLUDIT' ) ) {
 }
 
 // Access namespaced functions.
-use function SearchForms\form as search_form;
+use function SearchForms\sidebar_search;
 
 /**
  * Core plugin class
@@ -200,39 +200,9 @@ class Search_Forms extends Plugin {
 	 * @return string Returns the form markup.
 	 */
 	public function siteSidebar() {
-
-		// Return null if sidebar option is false.
-		if ( ! $this->in_sidebar() ) {
-			return null;
+		if ( $this->in_sidebar() ) {
+			return sidebar_search();
 		}
-
-		// Override default function arguments.
-		$args = [
-			'wrap_class' => 'form-wrap search-form-wrap plugin plugin-search sidebar-search',
-			'form_class' => 'form search-form plugin-content'
-		];
-
-		if ( ! $this->wrap() ) {
-			$args = array_merge( $args, [ 'wrap' => false ] );
-		}
-		if ( ! $this->label() ) {
-			$args = array_merge( $args, [ 'label' => false ] );
-		}
-		if ( ! $this->label_wrap() ) {
-			$args = array_merge( $args, [ 'label_wrap' => false ] );
-		}
-		if ( $this->placeholder() ) {
-			$args = array_merge( $args, [ 'placeholder' => $this->placeholder() ] );
-		}
-		if ( ! $this->button() ) {
-			$args = array_merge( $args, [ 'button' => false ] );
-		}
-		if ( $this->button_text() ) {
-			$args = array_merge( $args, [ 'button_text' => $this->button_text() ] );
-		}
-
-		// Return a modified search form.
-		return search_form( $args );
 	}
 
 	/**
@@ -515,7 +485,7 @@ class Search_Forms extends Plugin {
 
 	// @return string
 	public function label_wrap() {
-		return $this->getValue( 'label_wrap' );
+		return strtolower( $this->getValue( 'label_wrap' ) );
 	}
 
 	// @return string

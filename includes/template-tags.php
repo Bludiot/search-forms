@@ -76,8 +76,13 @@ function form( $args = null, $defaults = [] ) {
 	$label_wrap_open  = '';
 	$label_wrap_close = '';
 	if ( $args['label_wrap'] ) {
-		$label_wrap_open  = "<{$args['label_wrap']}>";
-		$label_wrap_close = "</{$args['label_wrap']}>";
+
+		// Allow for nested tags.
+		$get_open  = str_replace( ',', '><', $args['label_wrap'] );
+		$get_close = str_replace( ',', '></', $args['label_wrap'] );
+
+		$label_wrap_open  = "<{$get_open}>";
+		$label_wrap_close = "</{$get_close}>";
 	}
 
 	// List markup.
@@ -89,10 +94,10 @@ function form( $args = null, $defaults = [] ) {
 	if ( ! empty( $args['label'] ) ) {
 		$html .= sprintf(
 			'%s<label for="%s">%s</label>%s',
-			$label_wrap_open,
+			strtolower( $label_wrap_open ),
 			$form_id,
 			$args['label'],
-			$label_wrap_close
+			strtolower( $label_wrap_close )
 		);
 	}
 	$html .= "<form class='{$args['form_class']}' role='search'>";
@@ -122,4 +127,57 @@ function form( $args = null, $defaults = [] ) {
 	$html .= "<script>function {$form_id}_action(){var text=document.getElementById('{$form_id}').value;window.open('{$base}'+'search/'+text, '_self');return false;}document.getElementById('{$form_id}').onkeypress=function(e){if(!e)e=window.event;var keyCode=e.keyCode||e.which;if(keyCode=='13'){{$form_id}_action();return false;}}</script>";
 
 	return $html;
+}
+
+/**
+ * Sidebar search
+ *
+ * @since  1.0.0
+ * @return string Returns the form markup.
+ */
+function sidebar_search() {
+
+	// Get the plugin object.
+	$plugin = new \Search_Forms;
+
+	// Override default function arguments.
+	$args = [
+		'wrap_class' => 'form-wrap search-form-wrap plugin plugin-search sidebar-search',
+		'form_class' => 'form search-form plugin-content'
+	];
+
+	if ( ! $plugin->wrap() ) {
+		$args = array_merge( $args, [ 'wrap' => false ] );
+	}
+
+	if ( ! $plugin->label() ) {
+		$args = array_merge( $args, [ 'label' => false ] );
+	} elseif ( $plugin->label() ) {
+		$args = array_merge( $args, [ 'label' => $plugin->label() ] );
+	}
+
+	if ( ! $plugin->label_wrap() ) {
+		$args = array_merge( $args, [ 'label_wrap' => false ] );
+	} elseif ( $plugin->label_wrap() ) {
+		$args = array_merge( $args, [ 'label_wrap' => $plugin->label_wrap() ] );
+	}
+
+	if ( ! $plugin->placeholder() ) {
+		$args = array_merge( $args, [ 'placeholder' => false ] );
+	} elseif ( $plugin->placeholder() ) {
+		$args = array_merge( $args, [ 'placeholder' => $plugin->placeholder() ] );
+	}
+
+	if ( ! $plugin->button() ) {
+		$args = array_merge( $args, [ 'button' => false ] );
+	}
+
+	if ( ! $plugin->button_text() ) {
+		$args = array_merge( $args, [ 'button_text' => false ] );
+	} elseif ( $plugin->button_text() ) {
+		$args = array_merge( $args, [ 'button_text' => $plugin->button_text() ] );
+	}
+
+	// Return a modified search form.
+	return form( $args );
 }

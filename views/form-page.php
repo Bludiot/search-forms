@@ -15,6 +15,17 @@ echo "<script>var bodyClass = document.body;bodyClass.classList ? bodyClass.clas
 $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 
 ?>
+<style>
+.form-control-has-button {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 0.25em;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
 <div class="alert alert-primary alert-search-forms" role="alert">
 	<p class="m-0"><?php $L->p( "Go to the <a href='{$guide_page}'>search forms guide</a> page." ); ?></p>
 </div>
@@ -31,7 +42,7 @@ $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 				<div class="form-range-controls">
 					<span class="form-range-value ch-range-value"><span id="min_chars_value"><?php echo $this->getValue( 'min_chars' ); ?></span></span>
 					<input type="range" class="form-control-range" onInput="$('#min_chars_value').html($(this).val())" id="min_chars" name="min_chars" value="<?php echo $this->getValue( 'min_chars' ); ?>" min="0" max="10" step="1" />
-					<span class="btn btn-secondary btn-sm form-range-button" onClick="$('#min_chars_value').text('<?php echo $this->dbFields['min_chars']; ?>');$('#min_chars').val('<?php echo $this->dbFields['min_chars']; ?>');"><?php $L->p( 'Default' ); ?></span>
+					<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#min_chars_value').text('<?php echo $this->dbFields['min_chars']; ?>');$('#min_chars').val('<?php echo $this->dbFields['min_chars']; ?>');"><?php $L->p( 'Default' ); ?></span>
 				</div>
 				<small class="form-text text-muted form-range-small"><?php $L->p( 'Minimum number of characters for search results.' ); ?></small>
 			</div>
@@ -43,7 +54,7 @@ $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 				<div class="form-range-controls">
 					<span class="form-range-value ch-range-value"><span id="cache_words_value"><?php echo $this->getValue( 'cache_words' ); ?></span></span>
 					<input type="range" class="form-control-range" onInput="$('#cache_words_value').html($(this).val())" id="cache_words" name="cache_words" value="<?php echo $this->getValue( 'cache_words' ); ?>" min="100" max="2000" step="100" />
-					<span class="btn btn-secondary btn-sm form-range-button" onClick="$('#cache_words_value').text('<?php echo $this->dbFields['cache_words']; ?>');$('#cache_words').val('<?php echo $this->dbFields['cache_words']; ?>');"><?php $L->p( 'Default' ); ?></span>
+					<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#cache_words_value').text('<?php echo $this->dbFields['cache_words']; ?>');$('#cache_words').val('<?php echo $this->dbFields['cache_words']; ?>');"><?php $L->p( 'Default' ); ?></span>
 				</div>
 				<small class="form-text text-muted form-range-small"><?php $L->p( 'Number of words per result to cache.' ); ?></small>
 			</div>
@@ -78,7 +89,10 @@ $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 			<div class="form-field form-group row">
 				<label class="form-label col-sm-2 col-form-label" for="label"><?php $L->p( 'Label' ); ?></label>
 				<div class="col-sm-10">
-					<input type="text" id="label" name="label" value="<?php echo $this->getValue( 'label' ); ?>" placeholder="<?php $L->p( 'Search' ); ?>" />
+					<div class="form-control-has-button">
+						<input type="text" id="label" name="label" value="<?php echo $this->getValue( 'label' ); ?>" placeholder="<?php echo $this->dbFields['label']; ?>" />
+						<span class="btn btn-secondary btn-md button hide-if-no-js" onClick="$('#label').val('<?php echo $this->dbFields['label']; ?>');"><?php $L->p( 'Default' ); ?></span>
+					</div>
 					<small class="form-text text-muted"><?php $L->p( 'Text of the form label. Save as blank to hide the label.' ); ?></small>
 				</div>
 			</div>
@@ -86,15 +100,21 @@ $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 			<div class="form-field form-group row">
 				<label class="form-label col-sm-2 col-form-label" for="label_wrap"><?php $L->p( 'Label Wrap' ); ?></label>
 				<div class="col-sm-10">
-					<input type="text" id="label_wrap" name="label_wrap" value="<?php echo $this->getValue( 'label_wrap' ); ?>" placeholder="<?php $L->p( 'h2' ); ?>" />
-					<small class="form-text text-muted"><?php $L->p( 'Wrap the label in an element, such as a heading. Save as blank for no wrapping element.' ); ?></small>
+					<div class="form-control-has-button">
+						<input type="text" id="label_wrap" name="label_wrap" value="<?php echo $this->getValue( 'label_wrap' ); ?>" placeholder="<?php $L->p( 'h2' ); ?>" />
+						<span class="btn btn-secondary btn-md button hide-if-no-js" onClick="$('#label_wrap').val('<?php echo $this->dbFields['label_wrap']; ?>');"><?php $L->p( 'Default' ); ?></span>
+					</div>
+					<small class="form-text text-muted"><?php $L->p( 'Wrap the label in an element, such as a heading. Accepts HTML tags without brackets (e.g. h3), and comma-separated tags (e.g. span,strong,em). Save as blank for no wrapping element.' ); ?></small>
 				</div>
 			</div>
 
 			<div class="form-field form-group row">
 				<label class="form-label col-sm-2 col-form-label" for="placeholder"><?php $L->p( 'Placeholder' ); ?></label>
 				<div class="col-sm-10">
-					<input type="text" id="placeholder" name="placeholder" value="<?php echo $this->getValue( 'placeholder' ); ?>" placeholder="<?php $L->p( 'Submit' ); ?>" />
+					<div class="form-control-has-button">
+						<input type="text" id="placeholder" name="placeholder" value="<?php echo $this->getValue( 'placeholder' ); ?>" placeholder="<?php $L->p( 'Submit' ); ?>" />
+						<span class="btn btn-secondary btn-md button hide-if-no-js" onClick="$('#placeholder').val('<?php echo $this->dbFields['placeholder']; ?>');"><?php $L->p( 'Default' ); ?></span>
+					</div>
 					<small class="form-text text-muted"><?php $L->p( 'The placeholder text of the search query input.' ); ?></small>
 				</div>
 			</div>
@@ -113,7 +133,10 @@ $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 			<div id="button_text_wrap" class="form-field form-group row" style="display: <?php echo ( $this->button() ? 'flex' : 'none' ); ?>;">
 				<label class="form-label col-sm-2 col-form-label" for="button_text"><?php $L->p( 'Button Text' ); ?></label>
 				<div class="col-sm-10">
-					<input type="text" id="button_text" name="button_text" value="<?php echo $this->getValue( 'button_text' ); ?>" placeholder="<?php $L->p( 'Submit' ); ?>" />
+					<div class="form-control-has-button">
+						<input type="text" id="button_text" name="button_text" value="<?php echo $this->getValue( 'button_text' ); ?>" placeholder="<?php $L->p( 'Submit' ); ?>" />
+						<span class="btn btn-secondary btn-md button hide-if-no-js" onClick="$('#button_text').val('<?php echo $this->dbFields['button_text']; ?>');"><?php $L->p( 'Default' ); ?></span>
+					</div>
 					<small class="form-text text-muted"><?php $L->p( 'The text of the form submit button.' ); ?></small>
 				</div>
 			</div>
