@@ -1,7 +1,7 @@
 {
 	"plugin-data" : {
-		"name" : "Search Forms",
-		"description" : "Provide a search box to your users to search through the content of your site."
+		"name" : "Search Form",
+		"description" : "Improved search form plugin for Bludit CMS."
 	},
 	"search" : "Search",
 	"show-button-search" : "Show button search"
