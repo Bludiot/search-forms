@@ -87,7 +87,7 @@ $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 			</div>
 
 			<div class="form-field form-group row">
-				<label class="form-label col-sm-2 col-form-label" for="label"><?php $L->p( 'Label' ); ?></label>
+				<label class="form-label col-sm-2 col-form-label" for="label"><?php $L->p( 'Form Label' ); ?></label>
 				<div class="col-sm-10">
 					<div class="form-control-has-button">
 						<input type="text" id="label" name="label" value="<?php echo $this->getValue( 'label' ); ?>" placeholder="<?php echo $this->dbFields['label']; ?>" />
