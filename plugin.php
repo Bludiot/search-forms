@@ -4,8 +4,7 @@
  *
  * Plugin core class, do not namespace.
  *
- * An experiment to fix conflict in having
- * more than one form per page.
+ * Improved search form plugin for Bludit CMS.
  *
  * @package    Search Forms
  * @subpackage Core
