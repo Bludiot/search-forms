@@ -11,8 +11,9 @@
  * @since      1.0.0
  */
 
+// Stop if accessed directly.
 if ( ! defined( 'BLUDIT' ) ) {
-	die( 'The Search Forms plugin can not be accessed.' );
+	die( 'You are not allowed direct access to this file.' );
 }
 
 // Access namespaced functions.
@@ -44,18 +45,77 @@ class Search_Forms extends Plugin {
 	private $numberOfItems = 0;
 
 	/**
-	 * Prepare plugin
+	 * Constructor method
 	 *
-	 * Required files and actions for plugin functionality.
+	 * @since  1.0.0
+	 * @access public
+	 * @return self
+	 */
+	public function __construct() {
+
+		// Run parent constructor.
+		parent :: __construct();
+
+		// Include functionality.
+		if ( $this->installed() ) {
+			$this->autoload();
+			$this->get_files();
+		}
+	}
+
+	/**
+	 * Prepare plugin for installation
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 * @return void
 	 */
 	public function prepare() {
+		$this->autoload();
+		$this->get_files();
+	}
 
-		// Include search results algorithm.
-		require_once( $this->phpPath() . 'includes/class-search-results.php' );
+	/**
+	 * Include functionality
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function get_files() {
+
+		// Plugin path.
+		$path = PATH_PLUGINS . 'searchforms' . DS;
+
+		// Get plugin functions.
+		foreach ( glob( $path . 'includes/*.php' ) as $filename ) {
+			require_once $filename;
+		}
+	}
+
+	/**
+	 * Autoload classes
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @return void
+	 */
+	public function autoload() {
+
+		// Path to class files.
+		$path = PATH_PLUGINS . 'searchforms' . DS . 'includes/classes' . DS;
+
+		// Array of namespaced classes & filenames.
+		$classes = [
+			'SearchForms\Search_Results' => $path . 'class-search-results.php'
+		];
+		spl_autoload_register(
+			function ( string $class ) use ( $classes ) {
+				if ( isset( $classes[ $class ] ) ) {
+					require $classes[ $class ];
+				}
+			}
+		);
 	}
 
 	/**
@@ -111,7 +171,7 @@ class Search_Forms extends Plugin {
 		// Access global variables.
 		global $site, $url;
 
-		if ( 'booty' != $site->adminTheme() || 'configureight' == $site->theme() ) {
+		if ( 'configureight' == $site->theme() ) {
 			return null;
 		}
 
@@ -508,6 +568,3 @@ class Search_Forms extends Plugin {
 		return $this->getValue( 'button_class' );
 	}
 }
-
-// Get functions for use in themes.
-require( PATH_PLUGINS . 'searchforms/includes/template-tags.php' );
