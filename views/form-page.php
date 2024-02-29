@@ -8,9 +8,6 @@
  * @since      1.0.0
  */
 
-// Add class class to 'js' to `<body>` if JavaScript is enabled.
-echo "<script>var bodyClass = document.body;bodyClass.classList ? bodyClass.classList.add('js') : bodyClass.className += ' js';</script>\n";
-
 // Guide page URL.
 $guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
 
