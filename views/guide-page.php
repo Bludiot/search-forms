@@ -58,7 +58,7 @@ $defaults = [
 	'wrap_class'  => 'form-wrap search-form-wrap',
 	'form_class'  => 'form search-form',
 	'label'       => $L->get( 'Search' ),
-	'label_wrap'  => 'h2',
+	'label_el'    => 'h2',
 	'placeholder' => $L->get( "Enter at least 3 characters." ),
 	'button'      => true,
 	'button_text' => $L->get( 'Submit' )
@@ -83,7 +83,7 @@ $defaults = [
 <pre lang="PHP">
 &lt;?php
 $searchform = [
-	'label_wrap'  => 'h3',
+	'label_el'    => 'h3',
 	'placeholder' => $L->get( "Find this…" ),
 	'button_text' => $L->get( 'Go' )
 ];

@@ -4,7 +4,7 @@
  *
  * @package    Search Forms
  * @subpackage Core
- * @category   Frontend
+ * @category   Functions
  * @since      1.0.0
  */
 
@@ -22,7 +22,7 @@ if ( ! defined( 'BLUDIT' ) ) {
  * @example Override defaults:
  * ```
  * $searchform = [
- *     'label_wrap'  => 'h3',
+ *     'label_el'    => 'h3',
  *     'placeholder' => $L->get( "Find this…" ),
  *     'button_text' => $L->get( 'Go' )
  * ];
@@ -59,7 +59,7 @@ function form( $args = null, $defaults = [] ) {
 		'wrap_class'   => 'form-wrap search-form-wrap',
 		'form_class'   => 'form search-form',
 		'label'        => $L->get( 'Search' ),
-		'label_wrap'   => 'h2',
+		'label_el'     => 'h2',
 		'placeholder'  => $L->get( "Enter at least {$min_chars} characters." ),
 		'button'       => true,
 		'button_text'  => $L->get( 'Submit' ),
@@ -76,11 +76,11 @@ function form( $args = null, $defaults = [] ) {
 	// Heading element.
 	$label_wrap_open  = '';
 	$label_wrap_close = '';
-	if ( $args['label_wrap'] ) {
+	if ( $args['label_el'] ) {
 
 		// Allow for nested tags.
-		$get_open  = str_replace( ',', '><', $args['label_wrap'] );
-		$get_close = str_replace( ',', '></', $args['label_wrap'] );
+		$get_open  = str_replace( ',', '><', $args['label_el'] );
+		$get_close = str_replace( ',', '></', $args['label_el'] );
 
 		$label_wrap_open  = "<{$get_open}>";
 		$label_wrap_close = "</{$get_close}>";
@@ -159,9 +159,9 @@ function sidebar_search() {
 	}
 
 	if ( ! $plugin->label_wrap() ) {
-		$args = array_merge( $args, [ 'label_wrap' => false ] );
+		$args = array_merge( $args, [ 'label_el' => false ] );
 	} elseif ( $plugin->label_wrap() ) {
-		$args = array_merge( $args, [ 'label_wrap' => $plugin->label_wrap() ] );
+		$args = array_merge( $args, [ 'label_el' => $plugin->label_wrap() ] );
 	}
 
 	if ( ! $plugin->placeholder() ) {
