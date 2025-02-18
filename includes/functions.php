@@ -101,7 +101,7 @@ function form( $args = null, $defaults = [] ) {
 			strtolower( $label_wrap_close )
 		);
 	}
-	$html .= "<form class='{$args['form_class']}' role='search'>";
+	$html .= "<search role='search'><form class='{$args['form_class']}' role='form'>";
 	$html .= sprintf(
 		'<input type="search" id="%s" name="%s" placeholder="%s" />',
 		$form_id,
@@ -119,7 +119,7 @@ function form( $args = null, $defaults = [] ) {
 		);
 	}
 
-	$html .= '</form>';
+	$html .= '</form></search>';
 	if ( $args['wrap'] ) {
 		$html .= '</div>';
 	}
