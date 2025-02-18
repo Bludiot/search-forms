@@ -1,10 +1,10 @@
 {
 	"author"      : "Bludiot",
-	"email"       : "santa@north.pole",
+	"email"       : "",
 	"website"     : "https://github.com/Bludiot/searchforms",
 	"version"     : "1.0.0",
 	"releaseDate" : "",
-	"license"     : "Nope",
+	"license"     : "",
 	"compatible"  : "3.15.0",
 	"notes"       : ""
 }
