@@ -503,7 +503,7 @@ class Search_Forms extends Plugin {
 	 *
 	 * @since  1.0.0
 	 * @access private
-	 * @param [type] $text
+	 * @param  string $text
 	 * @return array Returns an array with the pages keys
 	 *               related to the text.
 	 */
