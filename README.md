@@ -13,7 +13,8 @@ The Search Forms plugin is an improved version of the default Bludit search plug
 The sidebar search form requires no coding and is enabled by default. It can be disabled on the settings page. The HTML markup and the CSS classes for the form are nearly identical to the original Bludit search plugin for those who have already written custom CSS for the sidebar form.
 
 When enabled, the sidebar search form has several options for customizing to your needs.
-Default Settings
+
+## Default Settings
 
 The array below is the complete array of arguments used to construct a search form. Any of these can be overridden with an array of arguments passed to a function call. These are also used by the sidebar search form but array values are overridden by the plugin with settings values.
 
