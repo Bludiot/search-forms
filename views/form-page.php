@@ -9,7 +9,7 @@
  */
 
 // Guide page URL.
-$guide_page = DOMAIN_ADMIN . 'plugin/Search_Forms';
+$guide_page = DOMAIN_ADMIN . 'plugin/' . $this->className();
 
 ?>
 <style>

@@ -9,7 +9,7 @@
  */
 
  // Settings page URL.
-$settings_page = DOMAIN_ADMIN . 'configure-plugin/Search_Forms';
+$settings_page = DOMAIN_ADMIN . 'configure-plugin/' . $this->className();
 
 ?>
 <style>
