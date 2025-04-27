@@ -147,6 +147,11 @@ class Search_Forms extends Plugin {
 			'button_class' => 'button btn btn-md search-submit-button'
 		];
 
+		// Array of custom hooks.
+		$this->customHooks = [
+			'search_form'
+		];
+
 		if ( ! $this->installed() ) {
 			$Tmp = new dbJSON( $this->filenameDb );
 			$this->db = $Tmp->db;
@@ -566,5 +571,19 @@ class Search_Forms extends Plugin {
 	// @return string
 	public function button_class() {
 		return $this->getValue( 'button_class' );
+	}
+
+	/**
+	 * Custom hook
+	 *
+	 * Prints the sidebar search form by
+	 * calling the `search_form' hook.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @return string Returns the form markup.
+	 */
+	public function search_form() {
+		return sidebar_search();
 	}
 }

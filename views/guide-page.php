@@ -74,6 +74,14 @@ $defaults = [
 
 	<pre lang="PHP">&lt;?php SearchForms\form(); ?&gt;</pre>
 
+	<p><?php $L->p( 'The default form can also be displayed using the <code>search_form</code> custom hook.' ); ?></p>
+
+	<?php if ( defined( 'BLUDIT_VERSION' ) && BLUDIT_VERSION >= 4 ) : ?>
+	<pre lang="PHP">&lt;?php HTML::execPluginsByHook( 'search_form' ); ?&gt;</pre>
+	<?php else : ?>
+	<pre lang="PHP">&lt;?php Theme::plugins( 'search_form' ); ?&gt;</pre>
+	<?php endif; ?>
+
 	<p><?php $L->p( 'The following example demonstrates a simple override of the form label.' ); ?></p>
 
 	<pre lang="PHP">&lt;?php SearchForms\form( [ 'label' => $L->get( 'Search Content' ) ] ); ?&gt;</pre>
