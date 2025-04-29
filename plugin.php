@@ -235,6 +235,22 @@ class Search_Forms extends Plugin {
 	}
 
 	/**
+	 * Admin controller
+	 *
+	 * Change the text of the `<title>` tag.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @global object $L The Language class.
+	 * @global array $layout
+	 * @return string Returns the head content.
+	 */
+	public function adminController() {
+		global $L, $layout, $site;
+		$layout['title'] = $L->get( 'Search Forms Guide' ) . ' | ' . $site->title();
+	}
+
+	/**
 	 * Admin user guide
 	 *
 	 * @since  1.0.0
