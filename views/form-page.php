@@ -37,7 +37,7 @@ $guide_page = DOMAIN_ADMIN . 'plugin/' . $this->className();
 			<label class="form-label col-sm-2 col-form-label" for="min_chars"><?php $L->p( 'Minimum Characters' ); ?></label>
 			<div class="col-sm-10 row form-range-row">
 				<div class="form-range-controls">
-					<span class="form-range-value ch-range-value"><span id="min_chars_value"><?php echo $this->getValue( 'min_chars' ); ?></span></span>
+					<span class="form-range-value ch-range-value"><span id="min_chars_value" style="display: inline-block; min-width: 3ch !important;"><?php echo $this->getValue( 'min_chars' ); ?></span></span>
 					<input type="range" id="min_chars" class="form-control-range" onInput="$('#min_chars_value').html($(this).val())" name="min_chars" value="<?php echo $this->getValue( 'min_chars' ); ?>" min="0" max="10" step="1" />
 					<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#min_chars_value').text('<?php echo $this->dbFields['min_chars']; ?>');$('#min_chars').val('<?php echo $this->dbFields['min_chars']; ?>');"><?php $L->p( 'Default' ); ?></span>
 				</div>
@@ -49,7 +49,7 @@ $guide_page = DOMAIN_ADMIN . 'plugin/' . $this->className();
 			<label class="form-label col-sm-2 col-form-label" for="cache_words"><?php $L->p( 'Cached Words' ); ?></label>
 			<div class="col-sm-10 row form-range-row">
 				<div class="form-range-controls">
-					<span class="form-range-value ch-range-value"><span id="cache_words_value"><?php echo $this->getValue( 'cache_words' ); ?></span></span>
+					<span class="form-range-value ch-range-value"><span id="cache_words_value" style="display: inline-block; min-width: 3ch !important;"><?php echo $this->getValue( 'cache_words' ); ?></span></span>
 					<input type="range" id="cache_words" class="form-control-range" onInput="$('#cache_words_value').html($(this).val())" name="cache_words" value="<?php echo $this->getValue( 'cache_words' ); ?>" min="100" max="2000" step="100" />
 					<span class="btn btn-secondary btn-md form-range-button hide-if-no-js" onClick="$('#cache_words_value').text('<?php echo $this->dbFields['cache_words']; ?>');$('#cache_words').val('<?php echo $this->dbFields['cache_words']; ?>');"><?php $L->p( 'Default' ); ?></span>
 				</div>
