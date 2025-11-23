@@ -99,5 +99,5 @@ echo SearchForms\form( $searchform );
 ?&gt;
 </pre>
 
-	<p><?php $L->p( 'Please raise issues and make suggestions on the plugin\'s GitHub page: <a href="https://github.com/Bludiot/searchforms">https://github.com/Bludiot/searchforms</a>' ); ?></p>
+	<p><?php $L->p( 'Please raise issues and make suggestions on the plugin\'s GitHub page: <a href="https://github.com/Bludiot/search-forms">https://github.com/Bludiot/search-forms</a>' ); ?></p>
 </div>

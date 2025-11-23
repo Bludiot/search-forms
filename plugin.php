@@ -85,7 +85,7 @@ class Search_Forms extends Plugin {
 	public function get_files() {
 
 		// Plugin path.
-		$path = PATH_PLUGINS . 'searchforms' . DS;
+		$path = PATH_PLUGINS . $this->directoryName() . DS;
 
 		// Get plugin functions.
 		foreach ( glob( $path . 'includes/*.php' ) as $filename ) {
@@ -103,7 +103,7 @@ class Search_Forms extends Plugin {
 	public function autoload() {
 
 		// Path to class files.
-		$path = PATH_PLUGINS . 'searchforms' . DS . 'includes/classes' . DS;
+		$path = PATH_PLUGINS . $this->directoryName() . DS . 'includes/classes' . DS;
 
 		// Array of namespaced classes & filenames.
 		$classes = [
